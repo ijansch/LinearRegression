@@ -15,6 +15,7 @@
 
 @synthesize slope = _slope;
 @synthesize intercept = _intercept;
+@synthesize correlation = _correlation;
 @synthesize sumY = _sumY;
 @synthesize sumX = _sumX;
 @synthesize sumXY = _sumXY;
@@ -43,9 +44,9 @@
         self.sumX2 = _sumX2 + (data.xValue * data.xValue);
     }
     self.slope = ((theNumber * self.sumXY) - self.sumX * self.sumY) / ((theNumber * self.sumX2) - (self.sumX * self.sumX));
- //   NSLog(@"The slope is %f", self.slope);
     self.intercept = ((self.sumY - (self.slope * self.sumX))/theNumber);
-//    NSLog(@"The intercept is %f", self.intercept);
+    self.correlation = (theNumber * self.sumXY - (self.sumX * self.sumY)) / (sqrt((theNumber * self.sumX2) - (self.sumX * self.sumX)) *
+    (sqrt((theNumber * (self.sumY * self.sumY)) - (self.sumY * self.sumY))));
 }
 
 @end

@@ -12,6 +12,7 @@
 
 @property (nonatomic) double slope;
 @property (nonatomic) double intercept;
+@property (nonatomic) double correlation;
 @property (nonatomic) double sumY;
 @property (nonatomic) double sumX;
 @property (nonatomic) double sumXY;
