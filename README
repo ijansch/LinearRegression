@@ -1,5 +1,0 @@
-I was trying to find a linear regression program written in objective C to use in a project of mine.
-I could not fine a prexisting project, so I decided to write my own. An instance of the class
-LinearRegression is called passing it an NSArray of objects that are composed of instances of the
-class DataItem which in turn is composed of two double numbers that represent and x and y value.
-
