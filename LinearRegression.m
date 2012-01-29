@@ -20,6 +20,7 @@
 @synthesize sumX = _sumX;
 @synthesize sumXY = _sumXY;
 @synthesize sumX2 = _sumX2;
+@synthesize sumY2 = _sumY2;
 
 
 - (void)calculateRegression:(NSArray *)theArray {
@@ -36,17 +37,19 @@
     self.sumX = 0.0;
     self.sumXY = 0.0;
     self.sumX2 = 0.0;
+    self.sumY2 = 0.0;
 
     for (DataItem *data in theArray) {
         _sumX = _sumX + data.xValue;
         self.sumY = _sumY + data.yValue;
         self.sumXY = _sumXY + (data.xValue * data.yValue);
         self.sumX2 = _sumX2 + (data.xValue * data.xValue);
+        self.sumY2 = _sumY2 + (data.yValue * data.yValue);
     }
     self.slope = ((theNumber * self.sumXY) - self.sumX * self.sumY) / ((theNumber * self.sumX2) - (self.sumX * self.sumX));
     self.intercept = ((self.sumY - (self.slope * self.sumX))/theNumber);
     self.correlation = (theNumber * self.sumXY - (self.sumX * self.sumY)) / (sqrt((theNumber * self.sumX2) - (self.sumX * self.sumX)) *
-    (sqrt((theNumber * (self.sumY * self.sumY)) - (self.sumY * self.sumY))));
+    (sqrt((theNumber * sumY2) - (self.sumY * self.sumY))));
 }
 
 @end
