@@ -11,6 +11,18 @@
 #import "LinearRegression.h"
 #import "DataItem.h"
 
+@interface LinearRegression()
+@property (nonatomic) double slope;
+@property (nonatomic) double intercept;
+@property (nonatomic) double correlation;
+@property (nonatomic) double sumY;
+@property (nonatomic) double sumX;
+@property (nonatomic) double sumXY;
+@property (nonatomic) double sumX2;
+@property (nonatomic) double sumY2;
+
+@end
+
 @implementation LinearRegression
 
 @synthesize slope = _slope;
@@ -23,7 +35,10 @@
 @synthesize sumY2 = _sumY2;
 
 
-- (void)calculateRegression:(NSArray *)theArray {
+
+
+
+- (RegressionResult *)calculateRegression:(NSArray *)theArray {
     
     // theArray should be an array of DataItem objects that each contain
     // two double numbers ( the x and y value of the data)
@@ -31,7 +46,7 @@
     // objects, you will probably want to make a copy like
     // NSArray *theArray = [mutableArray copy]; and then call the linearRegression object like
     // [instanceOfLinearRegressionData calculateRegression:theArray];
-    
+    RegressionResult *result = [[RegressionResult alloc] init];
     NSInteger theNumber = theArray.count;
     self.sumY = 0.0;
     self.sumX = 0.0;
@@ -46,9 +61,10 @@
         self.sumX2 = _sumX2 + (data.xValue * data.xValue);
         self.sumY2 = _sumY2 + (data.yValue * data.yValue);
     }
-    self.slope = ((theNumber * self.sumXY) - self.sumX * self.sumY) / ((theNumber * self.sumX2) - (self.sumX * self.sumX));
-    self.intercept = ((self.sumY - (self.slope * self.sumX))/theNumber);
-    self.correlation = fabs((theNumber * self.sumXY) - (self.sumX * self.sumY)) / (sqrt((theNumber * self.sumX2 - self.sumX * self.sumX) * (theNumber * self.sumY2 - (self.sumY * self.sumY))));
+    result.slope = ((theNumber * self.sumXY) - self.sumX * self.sumY) / ((theNumber * self.sumX2) - (self.sumX * self.sumX));
+    result.intercept = ((self.sumY - (self.slope * self.sumX))/theNumber);
+    result.correlation = fabs((theNumber * self.sumXY) - (self.sumX * self.sumY)) / (sqrt((theNumber * self.sumX2 - self.sumX * self.sumX) * (theNumber * self.sumY2 - (self.sumY * self.sumY))));
+    return result;
 }
 
 @end

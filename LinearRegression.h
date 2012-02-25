@@ -5,21 +5,10 @@
 //  Created by Phillip Porch on 1/22/12.
 //  Copyright (c) 2012 ThePorchDotCom. All rights reserved.
 //
-
+#import "RegressionResult.h"
 
 @interface LinearRegression : NSObject
 
-
-@property (nonatomic) double slope;
-@property (nonatomic) double intercept;
-@property (nonatomic) double correlation;
-@property (nonatomic) double sumY;
-@property (nonatomic) double sumX;
-@property (nonatomic) double sumXY;
-@property (nonatomic) double sumX2;
-@property (nonatomic) double sumY2;
-
-
-- (void)calculateRegression:(NSArray *)data;
+- (RegressionResult *)calculateRegression:(NSArray *)data;
 
 @end
